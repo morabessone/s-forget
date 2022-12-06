@@ -1,0 +1,31 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&display=swap');
+.background {
+    background-color: #8490A9;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.btn {
+    width: 210px;
+    height: 60px;
+    margin-top: 520px;
+    margin-left: 20px;
+    text-align: center;
+    font-family: Titillium Web;
+    font-weight: bold;
+    font-size: xx-large;
+    border-radius: 20px;
+    color: rgb(100, 94, 116);
+    background-color: white(47, 30, 139, 0.253);
+    border-color: rgba(100, 94, 116, 0.692);
+}
+
+.txt {
+    font-family: 'Montserrat Subrayada';
+    color: #CACCD0;
+    margin-top: 150px;
+    font-size: 60px;
+}
+
