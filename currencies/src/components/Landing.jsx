@@ -1,11 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from "./Landing.module.css";
 
 const Landing = () => {
+
   return (
     <div className={style.background}>
-      <h2 className={style.txt}>Welcome to Currency FX</h2>
-      <button className={style.btn}>START</button>
+      <div className={style.txtContainer}>
+        <p className={style.txt}>WELCOME TO</p>
+        <p className={style.currency}>CURRENCY FX</p>
+        <br></br>
+        <Link exact to = "/currencies">
+        <button className={style.btn}>START</button>
+        </Link>
+      </div>
     </div>
   );
 };
