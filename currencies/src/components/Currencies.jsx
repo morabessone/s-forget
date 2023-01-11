@@ -3,8 +3,10 @@ import { useState } from "react";
 import LoadingSpinner from "./Spinners";
 import style from "./Currencies.module.css";
 import { useEffect } from "react";
-import Table from "./Table";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setApiData } from "../actions";
+import axios from "axios";
 
 const Currencies = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +18,8 @@ const Currencies = () => {
   const [selectedCurrency, setSelectedCurrency] = useState("");
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(
     () => {
@@ -43,25 +47,17 @@ const Currencies = () => {
 
   const handleChange = (e) => {
     setSelectedCurrency(e.target.value);
-    console.log(selectedCurrency);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     console.log('entre')
-    fetch(
-      `https://script.google.com/macros/s/AKfycbwtO1FhMxE_ajmNTsYTf2euPF4ZgLB1E_OlUeHXHFqr3LkqeFtb0AfYCaua_WazvF24/exec?endpoint=deals/update&currency=${selectedCurrency}&api_token=pat-na1-bef1be8f-9a4f-46db-bfd4-35889d271526`
-    )
-      .then((respose) => respose.json())
-      .then((respose) => {
-        // ACA MANDAR LA RESP POR PROP
-        console.log(respose.data);
-        <Table data={respose.data} />;
-        navigate('/table');
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    let resp = await axios.get(`https://script.google.com/macros/s/AKfycbxDD5rvQoAqzoqKZusVNuY6q4t3mrW3hOWLD1VnEWQAj8Ex3GV1grbOJrG6TUb0qXgI/exec?selectedCurrency=${selectedCurrency}`)
+    console.log(resp)
+    setIsLoading(false)
+    dispatch(setApiData(resp))
+    navigate('/table');
   };
 
   let renderDetail = (
