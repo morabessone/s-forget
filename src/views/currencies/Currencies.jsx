@@ -4,6 +4,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 import { Button, Spinner } from '../../components'
+import { TOKEN, URL } from '../../utils'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -15,17 +16,15 @@ const Currencies = () => {
   const [selected, setSelected] = useState()
 
   const handleFetch = () => {
-    fetch(
-      'https://script.google.com/macros/s/AKfycbwtO1FhMxE_ajmNTsYTf2euPF4ZgLB1E_OlUeHXHFqr3LkqeFtb0AfYCaua_WazvF24/exec?endpoint=deals/currency&api_token=pat-na1-bef1be8f-9a4f-46db-bfd4-35889d271526'
-    )
+    fetch(`${URL}?endpoint=deals/currency&api_token=${TOKEN}`)
       .then(response => response.json())
       .then(response => {
         setCurrencies(response.data)
         setSelected(response.data[0])
         setIsLoading(false)
       })
-      .catch(() => {
-        // setErrorMessage('Unable to fetch currencies')
+      .catch(error => {
+        console.log('Error: ', error)
         setIsLoading(false)
       })
   }
