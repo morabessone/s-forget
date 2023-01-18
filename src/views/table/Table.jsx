@@ -17,6 +17,7 @@ const inProgressMockData = {
     error: 'Waiting for data',
   },
   status: 'Running...',
+
 }
 
 const Table = () => {
@@ -77,7 +78,6 @@ const Table = () => {
     runFunctions()
   }, [])
 
-  // if (isLoading) return <Spinner   bg-neutral-700 esta   bg-zinc-800 />
 
   return (
     <div>
